@@ -15,11 +15,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install yt-dlp
-        run: pip install yt-dlp
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y nodejs npm
+          pip install yt-dlp
 
       - name: Get video info
-        run: yt-dlp -j "${{ github.event.inputs.url }}" > result.json
+        run: |
+          yt-dlp --js-runtimes node -j "${{ github.event.inputs.url }}" > result.json
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

@@ -19,7 +19,7 @@ jobs:
         run: pip install yt-dlp
 
       - name: Get video info
-        run: yt-dlp --extractor-args "youtube:player_client=android,web" -j "${{ github.event.inputs.url }}" > result.json
+        run: yt-dlp --extractor-args "youtube:player_client=android" -j "${{ github.event.inputs.url }}" > result.json
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

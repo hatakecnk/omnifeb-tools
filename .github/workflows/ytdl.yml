@@ -1,30 +1,28 @@
 name: ytdl
 
 on:
-workflow_dispatch:
-inputs:
-url:
-description: "YouTube URL"
-required: true
-type: string
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "YouTube URL"
+        required: true
+        type: string
 
 jobs:
-run:
-runs-on: ubuntu-latest
+  run:
+    runs-on: ubuntu-latest
 
-```
-steps:
-  - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-  - name: Install yt-dlp
-    run: pip install yt-dlp
+      - name: Install yt-dlp
+        run: pip install yt-dlp
 
-  - name: Get video info
-    run: yt-dlp -j "${{ github.event.inputs.url }}" > result.json
+      - name: Get video info
+        run: yt-dlp -j "${{ github.event.inputs.url }}" > result.json
 
-  - name: Upload artifact
-    uses: actions/upload-artifact@v4
-    with:
-      name: result
-      path: result.json
-```
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: result
+          path: result.json

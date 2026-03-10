@@ -20,7 +20,7 @@ steps:
     run: pip install yt-dlp
 
   - name: Get video info
-    run: yt-dlp -j "${{ inputs.url }}" > result.json
+    run: yt-dlp -j "${{ github.event.inputs.url }}" > result.json
 
   - name: Upload artifact
     uses: actions/upload-artifact@v4
